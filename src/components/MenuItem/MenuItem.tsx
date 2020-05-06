@@ -1,15 +1,27 @@
 import React from 'react';
+import { useHistory, useRouteMatch } from 'react-router-dom';
 import './MenuItem.styles.scss';
 
 interface IMenuItemProps {
   title: string;
   imageUrl: string;
   size?: string;
+  linkUrl: string;
 }
 
-const MenuItem: React.FC<IMenuItemProps> = ({ title, imageUrl, size }) => {
+const MenuItem: React.FC<IMenuItemProps> = ({
+  title,
+  imageUrl,
+  size,
+  linkUrl,
+}) => {
+  let history = useHistory();
+  let match = useRouteMatch();
   return (
-    <div className={`${size} menu-item`}>
+    <div
+      className={`${size} menu-item`}
+      onClick={() => history.push(`${match?.url}${linkUrl}`)}
+    >
       <div
         className="background-image"
         style={{ backgroundImage: `url(${imageUrl})` }}
