@@ -16,9 +16,11 @@ const CollectionPreview: React.FC<ICollectionPreviewProps> = ({
     <div className="collection-preview">
       <h1 className="title">{title.toUpperCase()}</h1>
       <div className="preview">
-        {items.splice(0, 4).map(({ ...props }) => (
-          <CollectionItem key={props.id} {...props} />
-        ))}
+        {items
+          .filter((item, idx) => idx < 4)
+          .map(({ ...props }) => (
+            <CollectionItem key={props.id} {...props} />
+          ))}
       </div>
     </div>
   );
