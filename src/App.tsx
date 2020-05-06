@@ -4,6 +4,7 @@ import './App.css';
 import Header from './components/Header/Header';
 import HomePage from './pages/HomePage/HomePage';
 import ShopPage from './pages/ShopPage/ShopPage';
+import SignInAndSingUpPage from './pages/SignInAndSignUpPage/SignInAndSignUpPage';
 
 const App: React.FC = () => {
   return (
@@ -12,6 +13,7 @@ const App: React.FC = () => {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route path="/shop" component={ShopPage} />
+        <Route path="/signin" component={SignInAndSingUpPage} />
       </Switch>
     </div>
   );
