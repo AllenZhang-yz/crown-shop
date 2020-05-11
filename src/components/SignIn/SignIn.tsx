@@ -1,7 +1,7 @@
 import React, { useState, FormEvent, ChangeEvent } from 'react';
 import FormInput from '../FormInput/FormInput';
 import CustomButton from '../CustomButton//CustomButton';
-import { signInWithGoogle } from '../../firebase/firebase.utils';
+import { signInWithGoogle, auth } from '../../firebase/firebase.utils';
 import GoogleLogo from '../../assets/GoogleLogo.png';
 import './SignIn.style.scss';
 
@@ -16,9 +16,16 @@ const SignIn: React.FC = () => {
     password: '',
   });
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const { email, password } = signInInput;
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSignInInput({ email: '', password: '' });
+    try {
+      await auth.signInWithEmailAndPassword(email, password);
+      setSignInInput({ email: '', password: '' });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -33,7 +40,7 @@ const SignIn: React.FC = () => {
         <FormInput
           name="email"
           type="email"
-          value={signInInput.email}
+          value={email}
           label="email"
           handleChange={handleInputChange}
           required
@@ -41,7 +48,7 @@ const SignIn: React.FC = () => {
         <FormInput
           name="password"
           type="password"
-          value={signInInput.password}
+          value={password}
           label="password"
           handleChange={handleInputChange}
           required

@@ -5,19 +5,31 @@ import Header from './components/Header/Header';
 import HomePage from './pages/HomePage/HomePage';
 import ShopPage from './pages/ShopPage/ShopPage';
 import SignInAndSingUpPage from './pages/SignInAndSignUpPage/SignInAndSignUpPage';
-import { auth } from './firebase/firebase.utils';
+import { auth, createUserProfileDocument } from './firebase/firebase.utils';
+
+interface ICurrentUser {
+  id: string;
+  [key: string]: string;
+}
 
 const App: React.FC = () => {
-  const [currentUser, setCurrentUser] = useState<object | null>(null);
+  const [currentUser, setCurrentUser] = useState<ICurrentUser | null>(null);
   useEffect(() => {
-    let unsubscribeFromAuth = auth.onAuthStateChanged((user) =>
-      setCurrentUser(user)
-    );
-    console.log(currentUser);
+    let unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
+      if (userAuth) {
+        const userRef = await createUserProfileDocument(userAuth);
+        userRef?.onSnapshot((snapShot) => {
+          setCurrentUser({ id: snapShot.id, ...snapShot.data() });
+        });
+      }
+      setCurrentUser(null);
+    });
+
     return () => {
       unsubscribeFromAuth();
     };
-  }, [currentUser]);
+  }, []);
+  console.log(currentUser);
   return (
     <div>
       <Header currentUser={currentUser} />
