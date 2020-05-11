@@ -1,8 +1,18 @@
 .sign-in {
-  width: 30vw;
+  width: 380px;
   display: flex;
   flex-direction: column;
   .title {
     margin: 10px 0;
+  }
+  .button-wrapper {
+    display: flex;
+    align-items: center;
+    .google {
+      height: 30px;
+      width: auto;
+      cursor: pointer;
+      margin-left: 25px;
+    }
   }
 }

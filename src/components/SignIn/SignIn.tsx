@@ -1,6 +1,8 @@
 import React, { useState, FormEvent, ChangeEvent } from 'react';
 import FormInput from '../FormInput/FormInput';
 import CustomButton from '../CustomButton//CustomButton';
+import { signInWithGoogle } from '../../firebase/firebase.utils';
+import GoogleLogo from '../../assets/GoogleLogo.png';
 import './SignIn.style.scss';
 
 interface ISignIn {
@@ -44,7 +46,17 @@ const SignIn: React.FC = () => {
           handleChange={handleInputChange}
           required
         />
-        <CustomButton type="submit">sign in</CustomButton>
+        <div className="button-wrapper">
+          <CustomButton type="submit">sign in</CustomButton>
+          {/* <div onClick={signInWithGoogle}> */}
+          <img
+            src={GoogleLogo}
+            alt="google"
+            className="google"
+            onClick={signInWithGoogle}
+          />
+          {/* </div> */}
+        </div>
       </form>
     </div>
   );
