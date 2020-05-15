@@ -1,3 +1,5 @@
+import { UserActionTypes } from './userActionTypes';
+
 export interface ICurrentUser {
   id: string;
   [key: string]: string;
@@ -17,7 +19,7 @@ const initialState: IUserState = {
 };
 const userReducer = (state = initialState, action: IAction) => {
   switch (action.type) {
-    case 'SET_CURRENT_USER':
+    case UserActionTypes.SET_CURRENT_USER:
       return {
         ...state,
         currentUser: action.payload,

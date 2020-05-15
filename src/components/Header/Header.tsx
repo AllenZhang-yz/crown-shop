@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { ReactComponent as Logo } from '../../assets/crown.svg';
+import CartIcon from '../CartIcon/CartIcon';
+import CartDropdown from '../CartDropdown/CartDropdown';
 import { auth } from '../../firebase/firebase.utils';
 import './Header.style.scss';
 import { RootState } from '../../redux/rootReducer';
@@ -11,11 +13,18 @@ const Header: React.FC = () => {
   const currentUser = useSelector<RootState, ICurrentUser | null>(
     (state) => state.user.currentUser
   );
+  const cartHidden = useSelector<RootState, boolean>(
+    (state) => state.cart.hidden
+  );
+  console.log(currentUser);
   return (
     <div className="header">
-      <Link to="/" className="logo-container">
-        <Logo className="logo" />
-      </Link>
+      <div>
+        <Link to="/" className="logo-container">
+          <Logo className="logo" />
+        </Link>
+        {currentUser && <span>Hello, {currentUser.displayName}</span>}
+      </div>
       <div className="options">
         <Link className="option" to="/shop">
           SHOP
@@ -24,15 +33,17 @@ const Header: React.FC = () => {
           CONTACT
         </Link>
         {currentUser ? (
-          <div className="option" onClick={() => auth.signOut()}>
+          <Link className="option" to="/signin" onClick={() => auth.signOut()}>
             SIGN OUT
-          </div>
+          </Link>
         ) : (
           <Link className="option" to="/signin">
             SIGN IN
           </Link>
         )}
+        <CartIcon />
       </div>
+      {!cartHidden && <CartDropdown />}
     </div>
   );
 };
