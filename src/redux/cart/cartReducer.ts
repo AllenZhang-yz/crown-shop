@@ -1,5 +1,10 @@
 import { CartActionTypes } from './cartActionTypes';
-import { ICartItem, addItemToCart } from './cartUtils';
+import {
+  ICartItem,
+  addItemToCart,
+  clearItemFromCart,
+  removeItemFromCart,
+} from './cartUtils';
 import { IItem } from '../../pages/ShopPage/ShopPage';
 
 export interface ICartState {
@@ -9,7 +14,7 @@ export interface ICartState {
 
 interface IAction {
   type: string;
-  payload: IItem | boolean;
+  payload: IItem | ICartItem | boolean;
 }
 
 const initialState: ICartState = {
@@ -28,6 +33,22 @@ const cartReducer = (state = initialState, action: IAction) => {
       return {
         ...state,
         cartItems: addItemToCart(state.cartItems, action.payload as IItem),
+      };
+    case CartActionTypes.CLEAR_ITEM_FROM_CART:
+      return {
+        ...state,
+        cartItems: clearItemFromCart(
+          state.cartItems,
+          action.payload as ICartItem
+        ),
+      };
+    case CartActionTypes.REMOVE_ITEM:
+      return {
+        ...state,
+        cartItems: removeItemFromCart(
+          state.cartItems,
+          action.payload as ICartItem
+        ),
       };
     default:
       return state;
