@@ -7,7 +7,11 @@ import './CartIcon.style.scss';
 const CartIcon: React.FC = () => {
   const dispatch = useDispatch();
   return (
-    <div className="cart-icon" onClick={() => dispatch(toggleCartHidden())}>
+    <div
+      className="cart-icon"
+      onMouseEnter={() => dispatch(toggleCartHidden(false))}
+      onMouseLeave={() => dispatch(toggleCartHidden(true))}
+    >
       <ShoppingIcon className="shopping-icon" />
       <span className="item-count">0</span>
     </div>

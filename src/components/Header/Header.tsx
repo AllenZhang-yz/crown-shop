@@ -16,7 +16,6 @@ const Header: React.FC = () => {
   const cartHidden = useSelector<RootState, boolean>(
     (state) => state.cart.hidden
   );
-  console.log(currentUser);
   return (
     <div className="header">
       <div>
