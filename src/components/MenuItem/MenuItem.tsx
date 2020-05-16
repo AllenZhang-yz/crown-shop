@@ -15,8 +15,8 @@ const MenuItem: React.FC<IMenuItemProps> = ({
   size,
   linkUrl,
 }) => {
-  let history = useHistory();
-  let match = useRouteMatch();
+  const history = useHistory();
+  const match = useRouteMatch();
   return (
     <div
       className={`${size} menu-item`}

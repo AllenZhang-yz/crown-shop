@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { toggleCartHidden } from '../../redux/cart/cartActions';
 import { RootState } from '../../redux/rootReducer';
 import { ICartItem } from '../../redux/cart/cartUtils';
@@ -12,6 +13,7 @@ const CartDropdown: React.FC = () => {
     (state) => state.cart.cartItems
   );
   const dispatch = useDispatch();
+  const history = useHistory();
   return (
     <div
       className="cart-dropdown"
@@ -19,11 +21,17 @@ const CartDropdown: React.FC = () => {
       onMouseLeave={() => dispatch(toggleCartHidden(true))}
     >
       <div className="cart-items">
-        {cartItems.map((cartItem) => (
-          <CartItem item={cartItem} key={cartItem.id} />
-        ))}
+        {cartItems.length > 0 ? (
+          cartItems.map((cartItem) => (
+            <CartItem item={cartItem} key={cartItem.id} />
+          ))
+        ) : (
+          <span className="empty-message">Your cart is empty</span>
+        )}
       </div>
-      <CustomButton>GO TO CHECKOUT</CustomButton>
+      <CustomButton onClick={() => history.push('/checkout')}>
+        GO TO CHECKOUT
+      </CustomButton>
     </div>
   );
 };
