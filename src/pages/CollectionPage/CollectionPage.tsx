@@ -17,8 +17,9 @@ const CollectionPage: React.FC = memo(() => {
   const shopData = useSelector<RootState, { [key: string]: ICollection }>(
     (state) => state.shop
   );
-
+  console.log('shopdata:', shopData);
   const collectionData = shopData[params.collectionId];
+  console.log('collectionData', collectionData);
   const { title, items } = collectionData;
   return (
     <div className="collection-page">
