@@ -13,7 +13,7 @@ const CollectionsOverview: React.FC = memo(() => {
     (key) => collections[key]
   );
   return (
-    <div className="collections-overview"></div>
+    <div className="collections-overview">
       {collectionsArr.map(({ id, title, items }) => (
         <CollectionPreview key={id} title={title} items={items} />
       ))}
