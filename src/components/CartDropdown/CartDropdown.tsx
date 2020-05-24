@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { toggleCartHidden } from '../../redux/cart/cartActions';
@@ -8,7 +8,7 @@ import CustomButton from '../CustomButton/CustomButton';
 import CartItem from '../CartItem/CartItem';
 import './CartDropdown.style.scss';
 
-const CartDropdown: React.FC = () => {
+const CartDropdown: React.FC = memo(() => {
   const cartItems = useSelector<RootState, ICartItem[]>(
     (state) => state.cart.cartItems
   );
@@ -34,6 +34,6 @@ const CartDropdown: React.FC = () => {
       </CustomButton>
     </div>
   );
-};
+});
 
 export default CartDropdown;

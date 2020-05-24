@@ -1,4 +1,4 @@
-import React, { ButtonHTMLAttributes } from 'react';
+import React, { ButtonHTMLAttributes, memo } from 'react';
 import './CustomButton.style.scss';
 
 interface ICustomButton extends ButtonHTMLAttributes<HTMLElement> {
@@ -6,19 +6,17 @@ interface ICustomButton extends ButtonHTMLAttributes<HTMLElement> {
   inverted?: boolean;
 }
 
-const CustomButton: React.FC<ICustomButton> = ({
-  children,
-  inverted,
-  ...restProps
-}) => {
-  return (
-    <button
-      className={`${inverted ? 'inverted' : ''} custom-button`}
-      {...restProps}
-    >
-      {children}
-    </button>
-  );
-};
+const CustomButton: React.FC<ICustomButton> = memo(
+  ({ children, inverted, ...restProps }) => {
+    return (
+      <button
+        className={`${inverted ? 'inverted' : ''} custom-button`}
+        {...restProps}
+      >
+        {children}
+      </button>
+    );
+  }
+);
 
 export default CustomButton;

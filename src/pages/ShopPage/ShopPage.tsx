@@ -1,31 +1,18 @@
-import React, { useState } from 'react';
-import CollectionPreview from '../../components/CollectionPreview/CollectionPreview';
-import { SHOP_DATA } from '../../Shop.data';
+import React, { memo } from 'react';
+import { Route, useRouteMatch } from 'react-router-dom';
+import CollectionsOverview from '../../components/CollectionsOverview/CollectionsOverview';
+import CollectionPage from '../CollectionPage/CollectionPage';
 import './ShopPage.styles.scss';
 
-export interface IItem {
-  id: number;
-  name: string;
-  imageUrl: string;
-  price: number;
-}
+const ShopPage: React.FC = memo(() => {
+  const match = useRouteMatch();
 
-interface ICollection {
-  id: number;
-  title: string;
-  routeName: string;
-  items: IItem[];
-}
-
-const ShopPage: React.FC = () => {
-  const [collections, setCollections] = useState<ICollection[]>(SHOP_DATA);
   return (
     <div className="shop-page">
-      {collections.map(({ id, title, items }) => (
-        <CollectionPreview key={id} title={title} items={items} />
-      ))}
+      <Route exact path={`${match.path}`} component={CollectionsOverview} />
+      <Route path={`${match.path}/:collectionId`} component={CollectionPage} />
     </div>
   );
-};
+});
 
 export default ShopPage;

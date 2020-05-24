@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { ReactComponent as Logo } from '../../assets/crown.svg';
@@ -9,7 +9,7 @@ import './Header.style.scss';
 import { RootState } from '../../redux/rootReducer';
 import { ICurrentUser } from '../../redux/user/userReducer';
 
-const Header: React.FC = () => {
+const Header: React.FC = memo(() => {
   const currentUser = useSelector<RootState, ICurrentUser | null>(
     (state) => state.user.currentUser
   );
@@ -45,6 +45,6 @@ const Header: React.FC = () => {
       {!cartHidden && <CartDropdown />}
     </div>
   );
-};
+});
 
 export default Header;

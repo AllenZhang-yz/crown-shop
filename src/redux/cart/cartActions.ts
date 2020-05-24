@@ -1,5 +1,5 @@
 import { CartActionTypes } from './cartActionTypes';
-import { IItem } from '../../pages/ShopPage/ShopPage';
+import { IItem } from '../shop/shopReducer';
 import { ICartItem } from '../../redux/cart/cartUtils';
 
 export const toggleCartHidden = (hidden: boolean) => ({

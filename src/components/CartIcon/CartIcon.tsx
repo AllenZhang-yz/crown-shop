@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleCartHidden } from '../../redux/cart/cartActions';
 import { ReactComponent as ShoppingIcon } from '../../assets/shopping-bag.svg';
@@ -6,7 +6,7 @@ import { RootState } from '../../redux/rootReducer';
 import { ICartItem } from '../../redux/cart/cartUtils';
 import './CartIcon.style.scss';
 
-const CartIcon: React.FC = () => {
+const CartIcon: React.FC = memo(() => {
   const cartItems = useSelector<RootState, ICartItem[]>(
     (state) => state.cart.cartItems
   );
@@ -25,6 +25,6 @@ const CartIcon: React.FC = () => {
       <span className="item-count">{itemCount}</span>
     </div>
   );
-};
+});
 
 export default CartIcon;

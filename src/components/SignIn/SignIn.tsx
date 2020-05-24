@@ -1,4 +1,4 @@
-import React, { useState, FormEvent, ChangeEvent } from 'react';
+import React, { useState, FormEvent, ChangeEvent, memo } from 'react';
 import FormInput from '../FormInput/FormInput';
 import CustomButton from '../CustomButton//CustomButton';
 import { signInWithGoogle, auth } from '../../firebase/firebase.utils';
@@ -10,7 +10,7 @@ interface ISignIn {
   password: string;
 }
 
-const SignIn: React.FC = () => {
+const SignIn: React.FC = memo(() => {
   const [signInInput, setSignInInput] = useState<ISignIn>({
     email: '',
     password: '',
@@ -67,6 +67,6 @@ const SignIn: React.FC = () => {
       </form>
     </div>
   );
-};
+});
 
 export default SignIn;

@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/rootReducer';
 import { ICartItem } from '../../redux/cart/cartUtils';
 import CheckoutItem from '../../components/CheckoutItem/CheckoutItem';
 import './CheckoutPage.style.scss';
 
-const CheckoutPage: React.FC = () => {
+const CheckoutPage: React.FC = memo(() => {
   const cartItems = useSelector<RootState, ICartItem[]>(
     (state) => state.cart.cartItems
   );
@@ -40,6 +40,6 @@ const CheckoutPage: React.FC = () => {
       </div>
     </div>
   );
-};
+});
 
 export default CheckoutPage;

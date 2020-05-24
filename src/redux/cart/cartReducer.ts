@@ -5,7 +5,7 @@ import {
   clearItemFromCart,
   removeItemFromCart,
 } from './cartUtils';
-import { IItem } from '../../pages/ShopPage/ShopPage';
+import { IItem } from '../../redux/shop/shopReducer';
 
 export interface ICartState {
   hidden: boolean;

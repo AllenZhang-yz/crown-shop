@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { useDispatch } from 'react-redux';
 import { ICartItem } from '../../redux/cart/cartUtils';
 import {
@@ -12,7 +12,7 @@ interface ICheckoutItemProps {
   item: ICartItem;
 }
 
-const CheckoutItem: React.FC<ICheckoutItemProps> = ({ item }) => {
+const CheckoutItem: React.FC<ICheckoutItemProps> = memo(({ item }) => {
   const { imageUrl, name, quantity, price } = item;
   const dispatch = useDispatch();
   return (
@@ -39,6 +39,6 @@ const CheckoutItem: React.FC<ICheckoutItemProps> = ({ item }) => {
       </span>
     </div>
   );
-};
+});
 
 export default CheckoutItem;

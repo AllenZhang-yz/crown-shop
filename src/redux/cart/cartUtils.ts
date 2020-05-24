@@ -1,4 +1,4 @@
-import { IItem } from '../../pages/ShopPage/ShopPage';
+import { IItem } from '../../redux/shop/shopReducer';
 
 export interface ICartItem extends IItem {
   quantity: number;

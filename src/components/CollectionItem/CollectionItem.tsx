@@ -1,15 +1,15 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { useDispatch } from 'react-redux';
 import CustomButton from '../CustomButton/CustomButton';
 import { addItem } from '../../redux/cart/cartActions';
-import { IItem } from '../../pages/ShopPage/ShopPage';
+import { IItem } from '../../redux/shop/shopReducer';
 import './CollectionItem.style.scss';
 
 interface ICollectionItem {
   item: IItem;
 }
 
-const CollectionItem: React.FC<ICollectionItem> = ({ item }) => {
+const CollectionItem: React.FC<ICollectionItem> = memo(({ item }) => {
   const { imageUrl, name, price } = item;
   const dispatch = useDispatch();
   return (
@@ -24,6 +24,6 @@ const CollectionItem: React.FC<ICollectionItem> = ({ item }) => {
       </CustomButton>
     </div>
   );
-};
+});
 
 export default CollectionItem;

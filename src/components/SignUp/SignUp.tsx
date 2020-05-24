@@ -1,4 +1,4 @@
-import React, { useState, FormEvent, ChangeEvent } from 'react';
+import React, { useState, FormEvent, ChangeEvent, memo } from 'react';
 import FormInput from '../FormInput/FormInput';
 import CustomButton from '../CustomButton/CustomButton';
 import { auth, createUserProfileDocument } from '../../firebase/firebase.utils';
@@ -18,7 +18,7 @@ const initialSignUpInput = {
   confirmPassword: '',
 };
 
-const SignUp: React.FC = () => {
+const SignUp: React.FC = memo(() => {
   const [signUpInput, setSignUpInput] = useState<ISignUpState>(
     initialSignUpInput
   );
@@ -87,6 +87,6 @@ const SignUp: React.FC = () => {
       </form>
     </div>
   );
-};
+});
 
 export default SignUp;

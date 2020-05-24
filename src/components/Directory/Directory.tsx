@@ -1,25 +1,21 @@
-import React, { useState } from 'react';
+import React, { memo } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/rootReducer';
+import { IDirectory } from '../../redux/directory/directoryReducer';
 import MenuItem from '../MenuItem/MenuItem';
-import { sections as originalData } from '../../Directory.data';
 import './Directory.style.scss';
 
-interface ISection {
-  id: number;
-  title: string;
-  imageUrl: string;
-  linkUrl: string;
-  size?: string;
-}
-
-const Directory: React.FC = () => {
-  const [sections, setSections] = useState<ISection[]>(originalData);
+const Directory: React.FC = memo(() => {
+  const directory = useSelector<RootState, IDirectory[]>(
+    (state) => state.directory
+  );
   return (
     <div className="directory-menu">
-      {sections.map(({ id, ...restProps }) => (
+      {directory.map(({ id, ...restProps }) => (
         <MenuItem key={id} {...restProps} />
       ))}
     </div>
   );
-};
+});
 
 export default Directory;
