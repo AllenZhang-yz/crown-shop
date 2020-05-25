@@ -9,7 +9,6 @@ const CollectionsOverview: React.FC = memo(() => {
   const collections = useSelector<RootState, { [key: string]: ICollection }>(
     (state) => state.shop
   );
-  console.log('collections', collections);
   const collectionsArr = Object.keys(collections).map(
     (key) => collections[key]
   );

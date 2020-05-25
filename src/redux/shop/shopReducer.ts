@@ -24,7 +24,6 @@ const initialState: { [key: string]: ICollection } = SHOP_DATA;
 const shopReducer = (state = initialState, action: IAction) => {
   switch (action.type) {
     default:
-      console.log('state', state);
       return state;
   }
 };

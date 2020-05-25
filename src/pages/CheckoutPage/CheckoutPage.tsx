@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/rootReducer';
 import { ICartItem } from '../../redux/cart/cartUtils';
 import CheckoutItem from '../../components/CheckoutItem/CheckoutItem';
+import StripeButton from '../../components/StripeButton/StripeButton';
 import './CheckoutPage.style.scss';
 
 const CheckoutPage: React.FC = memo(() => {
@@ -35,9 +36,8 @@ const CheckoutPage: React.FC = memo(() => {
       {cartItems.map((cartItem) => (
         <CheckoutItem key={cartItem.id} item={cartItem} />
       ))}
-      <div className="total">
-        <span>TOTAL: ${totalPrice}</span>
-      </div>
+      <div className="total">TOTAL: ${totalPrice}</div>
+      <StripeButton price={totalPrice} />
     </div>
   );
 });
