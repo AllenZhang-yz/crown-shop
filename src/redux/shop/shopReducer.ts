@@ -1,4 +1,5 @@
-import { SHOP_DATA } from '../../Shop.data';
+// import { SHOP_DATA } from '../../Shop.data';
+import { ShopActionTypes } from './shopActionTypes';
 
 export interface IItem {
   id: number;
@@ -19,10 +20,15 @@ interface IAction {
   payload: any;
 }
 
-const initialState: { [key: string]: ICollection } = SHOP_DATA;
+const initialState: { [key: string]: ICollection } = {};
 
 const shopReducer = (state = initialState, action: IAction) => {
   switch (action.type) {
+    case ShopActionTypes.UPDATE_COLLECTIONS:
+      return {
+        ...state,
+        ...action.payload,
+      };
     default:
       return state;
   }

@@ -2,6 +2,8 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 
+import { ICollection } from '../redux/shop/shopReducer';
+
 const config = {
   apiKey: 'AIzaSyBCoKyGDmIP683VcHasH0oxRQlv11otg4Q',
   authDomain: 'crown-shop-db-df140.firebaseapp.com',
@@ -21,7 +23,9 @@ export const createUserProfileDocument = async (
     return;
   }
   const userRef = firestore.doc(`users/${userAuth.uid}`);
+
   const snapShot = await userRef.get();
+
   if (!snapShot.exists) {
     const { displayName, email } = userAuth;
     const createAt = new Date();
@@ -37,6 +41,34 @@ export const createUserProfileDocument = async (
     }
   }
   return userRef;
+};
+
+export const addCollectionAndDocuments = async (
+  collectionKey: string,
+  objectsToAdd: ICollection[]
+) => {
+  const collectionRef = firestore.collection(collectionKey);
+  const batch = firestore.batch();
+  objectsToAdd.forEach((object) => {
+    const newDocRef = collectionRef.doc();
+    batch.set(newDocRef, object);
+  });
+  await batch.commit();
+};
+
+export const convertCollectionsSnapshotToMap = (
+  collections: firebase.firestore.QuerySnapshot<firebase.firestore.DocumentData>
+) => {
+  const transformedCollection = collections.docs.map((doc) =>
+    doc.data()
+  ) as ICollection[];
+  return transformedCollection.reduce(
+    (accumulator: { [key: string]: ICollection }, collection: ICollection) => {
+      accumulator[collection.title.toLowerCase()] = collection;
+      return accumulator;
+    },
+    {}
+  );
 };
 
 firebase.initializeApp(config);

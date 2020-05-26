@@ -7,16 +7,27 @@ import HomePage from './pages/HomePage/HomePage';
 import ShopPage from './pages/ShopPage/ShopPage';
 import SignInAndSingUpPage from './pages/SignInAndSignUpPage/SignInAndSignUpPage';
 import CheckoutPage from './pages/CheckoutPage/CheckoutPage';
-import { auth, createUserProfileDocument } from './firebase/firebase.utils';
+import {
+  auth,
+  createUserProfileDocument,
+  // addCollectionAndDocuments,
+} from './firebase/firebase.utils';
 import { setCurrentUser } from './redux/user/userActions';
 import { RootState } from './redux/rootReducer';
 import { ICurrentUser } from './redux/user/userReducer';
+// import { ICollection } from './redux/shop/shopReducer';
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
   const currentUser = useSelector<RootState, ICurrentUser | null>(
     (state) => state.user.currentUser
   );
+  // const collections = useSelector<RootState, { [key: string]: ICollection }>(
+  //   (state) => state.shop
+  // );
+  // const collectionsArr = Object.keys(collections).map(
+  //   (key) => collections[key]
+  // );
 
   useEffect(() => {
     let unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
@@ -27,6 +38,7 @@ const App: React.FC = () => {
         });
       }
       dispatch(setCurrentUser(null));
+      // addCollectionAndDocuments('collections', collectionsArr);
     });
 
     return () => {
