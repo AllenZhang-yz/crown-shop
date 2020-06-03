@@ -14,7 +14,7 @@ export const signInSuccess: (user: ICurrentUser) => IAction = (
   payload: user,
 });
 
-export const signInFailure: (error: Error) => IAction = (error: Error) => ({
+export const signInFailure = (error: Error): IAction => ({
   type: UserActionTypes.SIGN_IN_FAILURE,
   payload: error.message,
 });
