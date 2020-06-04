@@ -51,8 +51,19 @@
   }
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 800px) {
   .collection-item {
-    width: 90%;
+    width: 40vw;
+    .custom-button {
+      display: block;
+      opacity: 0.9;
+      min-width: unset;
+      padding: 0 10px;
+    }
+    &:hover {
+      .image {
+        opacity: unset;
+      }
+    }
   }
 }

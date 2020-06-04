@@ -14,12 +14,13 @@
   }
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 800px) {
   .collection-preview {
+    align-items: center;
     .preview {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      grid-gap: 30px;
+      grid-gap: 15px;
     }
   }
 }

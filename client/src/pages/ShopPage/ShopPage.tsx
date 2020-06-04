@@ -1,13 +1,16 @@
-import React, { memo, useEffect } from 'react';
+import React, { memo, useEffect, lazy } from 'react';
 import { Route, useRouteMatch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/rootReducer';
-import CollectionsOverview from '../../components/CollectionsOverview/CollectionsOverview';
-import CollectionPage from '../CollectionPage/CollectionPage';
 import { fetchCollectionsStart } from '../../redux/shop/shopActions';
 import WithSpinner from '../../components/WithSpinner/WithSpinner';
 import './ShopPage.styles.scss';
 import { ICollection } from '../../redux/shop/shopReducer';
+
+const CollectionsOverview = lazy(() =>
+  import('../../components/CollectionsOverview/CollectionsOverview')
+);
+const CollectionPage = lazy(() => import('../CollectionPage/CollectionPage'));
 
 const CollectionsOverviewWithSpinner = WithSpinner(CollectionsOverview);
 const CollectionPageWithSpinner = WithSpinner(CollectionPage);

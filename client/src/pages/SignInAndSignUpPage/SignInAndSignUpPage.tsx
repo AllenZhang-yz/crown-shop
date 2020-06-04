@@ -7,7 +7,9 @@ const SignInAndSignUpPage: React.FC = memo(() => {
   return (
     <div className="sign-in-and-sign-up">
       <SignIn />
-      <SignUp />
+      <div className="sign-up">
+        <SignUp />
+      </div>
     </div>
   );
 });
