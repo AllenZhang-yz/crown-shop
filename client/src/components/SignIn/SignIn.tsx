@@ -1,4 +1,4 @@
-import React, { useState, FormEvent, ChangeEvent, memo } from 'react';
+import React, { useState, FormEvent, ChangeEvent } from 'react';
 import { useDispatch } from 'react-redux';
 import FormInput from '../FormInput/FormInput';
 import CustomButton from '../CustomButton//CustomButton';
@@ -14,7 +14,7 @@ export interface ISignIn {
   password: string;
 }
 
-const SignIn: React.FC = memo(() => {
+const SignIn: React.FC = () => {
   const dispatch = useDispatch();
   const [signInInput, setSignInInput] = useState<ISignIn>({
     email: '',
@@ -67,6 +67,6 @@ const SignIn: React.FC = memo(() => {
       </form>
     </div>
   );
-});
+};
 
 export default SignIn;

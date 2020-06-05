@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import CollectionItem from '../../components/CollectionItem/CollectionItem';
@@ -12,7 +12,7 @@ interface RouteParams {
   collectionId: ICollectionId;
 }
 
-const CollectionPage: React.FC = memo(() => {
+const CollectionPage: React.FC = () => {
   const params = useParams<RouteParams>();
   const shopData = useSelector<RootState, { [key: string]: ICollection }>(
     (state) => state.shop.collections
@@ -29,6 +29,6 @@ const CollectionPage: React.FC = memo(() => {
       </div>
     </div>
   );
-});
+};
 
 export default CollectionPage;

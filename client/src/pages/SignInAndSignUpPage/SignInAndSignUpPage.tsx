@@ -1,9 +1,9 @@
-import React, { memo } from 'react';
+import React from 'react';
 import SignIn from '../../components/SignIn/SignIn';
 import SignUp from '../../components/SignUp/SignUp';
 import './SignInAndSignUpPage.style.scss';
 
-const SignInAndSignUpPage: React.FC = memo(() => {
+const SignInAndSignUpPage: React.FC = () => {
   return (
     <div className="sign-in-and-sign-up">
       <SignIn />
@@ -12,6 +12,6 @@ const SignInAndSignUpPage: React.FC = memo(() => {
       </div>
     </div>
   );
-});
+};
 
 export default SignInAndSignUpPage;

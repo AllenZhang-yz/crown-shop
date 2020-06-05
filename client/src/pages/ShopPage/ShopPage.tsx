@@ -1,4 +1,4 @@
-import React, { memo, useEffect, lazy } from 'react';
+import React, { useEffect, lazy } from 'react';
 import { Route, useRouteMatch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/rootReducer';
@@ -15,7 +15,7 @@ const CollectionPage = lazy(() => import('../CollectionPage/CollectionPage'));
 const CollectionsOverviewWithSpinner = WithSpinner(CollectionsOverview);
 const CollectionPageWithSpinner = WithSpinner(CollectionPage);
 
-const ShopPage: React.FC = memo(() => {
+const ShopPage: React.FC = () => {
   const match = useRouteMatch();
   const dispatch = useDispatch();
   const isFetching = useSelector<RootState, boolean>(
@@ -45,6 +45,6 @@ const ShopPage: React.FC = memo(() => {
       />
     </div>
   );
-});
+};
 
 export default ShopPage;

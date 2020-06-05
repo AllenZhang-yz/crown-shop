@@ -1,4 +1,4 @@
-import React, { useState, FormEvent, ChangeEvent, memo } from 'react';
+import React, { useState, FormEvent, ChangeEvent } from 'react';
 import { useDispatch } from 'react-redux';
 import FormInput from '../FormInput/FormInput';
 import CustomButton from '../CustomButton/CustomButton';
@@ -20,7 +20,7 @@ const initialSignUpInput = {
   confirmPassword: '',
 };
 
-const SignUp: React.FC = memo(() => {
+const SignUp: React.FC = () => {
   const [signUpInput, setSignUpInput] = useState<ISignUp>(initialSignUpInput);
   const { displayName, email, password, confirmPassword } = signUpInput;
   const dispatch = useDispatch();
@@ -79,6 +79,6 @@ const SignUp: React.FC = memo(() => {
       </form>
     </div>
   );
-});
+};
 
 export default SignUp;

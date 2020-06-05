@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/rootReducer';
 import { ICartItem } from '../../redux/cart/cartUtils';
@@ -6,7 +6,7 @@ import CheckoutItem from '../../components/CheckoutItem/CheckoutItem';
 import StripeButton from '../../components/StripeButton/StripeButton';
 import './CheckoutPage.style.scss';
 
-const CheckoutPage: React.FC = memo(() => {
+const CheckoutPage: React.FC = () => {
   const cartItems = useSelector<RootState, ICartItem[]>(
     (state) => state.cart.cartItems
   );
@@ -40,6 +40,6 @@ const CheckoutPage: React.FC = memo(() => {
       <StripeButton price={totalPrice} />
     </div>
   );
-});
+};
 
 export default CheckoutPage;
